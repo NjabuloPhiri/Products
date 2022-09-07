@@ -1,0 +1,58 @@
+body, html{
+    font-family: 'VT323', monospace;
+    background-image: url("../images/golf_leg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+ul{
+    list-style-type: none;
+}
+.content-box{
+    width: 550px;
+    height: 550px;
+    background-color: black;
+}
+.bg-dark{
+    background-color: black !important;
+}
+.store-name{
+    color: black;
+}
+.product-listing{
+    font-size: 25px;
+}
+.img-responsive{
+    width: 300px;
+    height: 300px;
+}
+.pagination{
+    position: relative;
+    top: 120px;
+}
+.page-footer{
+    position: relative;
+    bottom: -130px;
+    height: 48px;
+    width: 100%;
+    background-color: black;
+}
+
+@media only screen and (max-width: 600px) {
+  .content-box {
+    width: 250px;
+    height: 250px;
+  }
+  .product-listing{
+    font-size: 8px;
+  }
+  .products-header{
+    font-size: 18px;
+  }
+  .pagination{
+    position: relative;
+    top: 45px;
+  }
+  .page-footer{
+    bottom: -68px;
+  }
+}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container justify-content-end">
+        <h5>
+            {% if user.is_authenticated %}
+            Hi {{ user.username }}!
+        </h5>
+        <h4><a href="{% url 'logout' %}">Logout</a></h4>
+        <div class="py-3">
+            <div class="text-right">
+                <a href="{% url 'post_product' %}">+ Add Product</a>
+            </div>
+        </div>
+</div>
+
+<!-- Content Area -->
+<div class="container">
+    <h2 class="store-name text-center justify-content-end py-2">Welcome to The Storr</h2>
+    <p class="text-center py-2">You may browse through the collection of apparel we have housed in our space.</p>
+    <div class="content-box m-auto">
+        <h2 class="products-header text-white text-center py-2">Products</h2>
+        <div class="product-listing">
+            <ul>
+                {% for object in object_list %}
+                <li>
+                    <a href="/product/{{ object.id}}">{{ object.product_name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<!-- Pagination section -->
+<div class="container text-center">
+    {% if is_paginated %}
+
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-primary mb-4" href="?page=1">First page</a>
+            <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous page</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-primary mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+                <a class="btn btn-outline-primary mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+
+    {% endif %}
+</div>
+
+{% else %}
+<div class="container py-3">
+    <div class="py-2">
+        <h4>You are not logged in.</h4>
+        <h3><a href="{% url 'login' %}">login</a></h3>
+
+        <h4>Register here.</h4>
+        <h3><a href="{% url 'register' %}">register</a></h3>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock content%}
+
+

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container content-section py-4">
+    <form method="post">
+        {% include 'form_snippet.html' %}
+        {% csrf_token %}
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Signup</button>
+        </div>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">Already have an account? <a href="#">Sign in</a> </small>
+    </div>
+</div>
+
+{% endblock content %}

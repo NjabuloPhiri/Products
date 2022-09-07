@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    {% if user.is_authenticated and request.user.is_superuser %}
+    <h5 class="container text-right py-3">
+        <a class="mx-3" href="{% url 'products_update' object.id %}">Edit</a>
+        <a class="mx-3" href="{% url 'products_delete' object.id %}">Delete</a>
+    </h5>
+
+    {% endif %}
+</div>
+
+<div class="container product-entry py-3">
+    <h2><a href="">{{ object.product_name }}</a> </h2>
+    <p>About the Product: {{ object.product_description }}</p>
+    <p>Retailer: {{ object.retailer }}</p>
+    <p>Color: {{ object.product_color }}</p>
+    <p>Price: R{{ object.price }}</p>
+        <div class="m-auto py-3">
+            <img class="img-responsive ml-5 mr-5" src="{{ object.product_image.url  }}" alt="image">
+        </div>
+</div>
+
+<!-- Back to HomePage Button -->
+<div class="container my-3 py-3">
+    <a href="/">Back</a>
+</div>
+
+{% endblock content %}
+
+
+
+
